@@ -15,7 +15,8 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import uk.org.siri.siri.NaturalLanguageStringStructure;
+
+import uk.org.siri.siri_2.NaturalLanguageStringStructure;
 
 
 /**

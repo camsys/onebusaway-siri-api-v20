@@ -9,7 +9,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.validation.Schema;
 
-import uk.org.siri.siri.*;
+import uk.org.siri.siri_2.*;
 
 public class NewLinesRequest {
 	JAXBContext jc;

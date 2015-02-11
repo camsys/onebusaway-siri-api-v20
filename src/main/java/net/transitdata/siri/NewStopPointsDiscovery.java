@@ -9,8 +9,8 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.validation.Schema;
 
-import uk.org.siri.siri.*;
-import uk.org.siri.siri.AnnotatedStopPointStructure.Lines;
+import uk.org.siri.siri_2.*;
+import uk.org.siri.siri_2.AnnotatedStopPointStructure.Lines;
 
 public class NewStopPointsDiscovery {
 
