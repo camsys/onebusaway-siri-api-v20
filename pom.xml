@@ -56,5 +56,15 @@
 			<name>Java.net repository</name>
 			<url>http://download.java.net/maven/2</url>
 		</repository>
+		 <repository>
+            <id>snapshots.staging.obanyc.com</id>
+            <url>http://build.staging.obanyc.com/archiva/repository/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
 	</repositories>
 </project>
