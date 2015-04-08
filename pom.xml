@@ -12,6 +12,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jackson.version>1.9.13</jackson.version>
 		<jaxb-api.version>2.2.11</jaxb-api.version>
+		<nyc_site_id>build.staging.obanyc.com</nyc_site_id>
+      	<nyc_site_deployment_base>scp://${nyc_site_id}/var/www/sites/developer/modules</nyc_site_deployment_base>
 	</properties>
 
 	<dependencies>
@@ -63,8 +65,19 @@
                 <enabled>false</enabled>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
 	</repositories>
+	
+	<distributionManagement>
+    <snapshotRepository>
+      <id>snapshots-mvn-repo</id>
+      <url>http://build.staging.obanyc.com/archiva/repository/snapshots/</url>
+    </snapshotRepository>
+     <site>
+      <id>${nyc_site_id}</id>
+      <url>${nyc_site_deployment_base}/onebusaway-nyc/${project.version}</url>
+    </site>
+  </distributionManagement>
 </project>
