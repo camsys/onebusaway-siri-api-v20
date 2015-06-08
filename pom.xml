@@ -1,19 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<groupId>org.onebusaway</groupId>
 	<artifactId>onebusaway-siri-api-v20</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
-
-	<name>siri-20-java</name>
-	<url>http://transitdata.net</url>
+	<version>1.0.2</version>
+	<packaging>jar</packaging>
+	<name>onebusaway-siri-api-v20</name>
+	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jackson.version>1.9.13</jackson.version>
 		<jaxb-api.version>2.2.11</jaxb-api.version>
-		<nyc_site_id>build.staging.obanyc.com</nyc_site_id>
-      	<nyc_site_deployment_base>scp://${nyc_site_id}/var/www/sites/developer/modules</nyc_site_deployment_base>
+		<site_id>build.staging.obanyc.com</site_id>
+		<site_deployment_base>scp://${site_id}/var/www/sites/developer/modules</site_deployment_base>
+		<site_url>${site_deployment_base}/${project.name}/${project.version}</site_url>
 	</properties>
+	
+	<scm>
+		<connection>scm:git:git@github.com:camsys/onebusaway-siri-api-v20.git</connection>
+		<developerConnection>scm:git:git@github.com:camsys/onebusaway-siri-api-v20.git</developerConnection>
+		<url>scm:git:git@github.com:camsys/onebusaway-siri-api-v20</url>
+   	</scm>
 
 	<dependencies>
 		<dependency>
@@ -37,20 +45,22 @@
 			<version>${jaxb-api.version}</version>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<!-- Maven compiler plugin -->
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
+	
+	<distributionManagement>
+		<repository>
+			<id>releases-mvn-repo</id>
+			<url>http://build.staging.obanyc.com/archiva/repository/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots-mvn-repo</id>
+			<url>http://build.staging.obanyc.com/archiva/repository/snapshots/</url>
+		</snapshotRepository>
+		<site>
+			<id>${site_id}</id>
+			<url>${site_deployment_base}/onebusaway-nyc/${project.version}</url>
+		</site>
+	</distributionManagement>
+	
 	<repositories>
 		<repository>
 			<id>maven2-repository.dev.java.net</id>
@@ -68,26 +78,22 @@
 		    </snapshots>
 		</repository>
 	</repositories>
-	<scm>
-		<connection>scm:git:git@github.com:camsys/onebusaway-siri-api-v20.git</connection>
-		<developerConnection>scm:git:git@github.com:camsys/onebusaway-siri-api-v20.git</developerConnection>
-		<url>scm:git:git@github.com:camsys/onebusaway-siri-api-v20</url>
-    	</scm>
 	
-	<distributionManagement>
-	    <snapshotRepository>
-	      <id>snapshots-mvn-repo</id>
-	      <url>http://build.staging.obanyc.com/archiva/repository/snapshots/</url>
-	    </snapshotRepository>
-	    <repository>
-	      <id>releases-mvn-repo</id>
-	      <url>http://build.staging.obanyc.com/archiva/repository/releases/</url>
-	    </repository>
-	     <site>
-	      <id>${nyc_site_id}</id>
-	      <url>${nyc_site_deployment_base}/onebusaway-nyc/${project.version}</url>
-	    </site>
-  	</distributionManagement>
+	<build>
+		<plugins>
+			<!-- Maven compiler plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
 
 
