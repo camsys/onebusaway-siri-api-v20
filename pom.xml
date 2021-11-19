@@ -3,7 +3,7 @@
 
 	<groupId>org.onebusaway</groupId>
 	<artifactId>onebusaway-siri-api-v20</artifactId>
-	<version>1.0.4-SNAPSHOT</version>
+	<version>1.0.4</version>
 	<packaging>jar</packaging>
 	<name>onebusaway-siri-api-v20</name>
 	<url>http://maven.apache.org</url>
@@ -21,7 +21,8 @@
 		<connection>scm:git:git@github.com:camsys/onebusaway-siri-api-v20.git</connection>
 		<developerConnection>scm:git:git@github.com:camsys/onebusaway-siri-api-v20.git</developerConnection>
 		<url>scm:git:git@github.com:camsys/onebusaway-siri-api-v20</url>
-	</scm>
+	  <tag>onebusaway-siri-api-v20-1.0.4</tag>
+  </scm>
 
 	<dependencies>
 		<dependency>
