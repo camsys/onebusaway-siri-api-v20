@@ -28,15 +28,19 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.AnnotationIntrospector;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationConfig;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair;
+import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
-
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig;
-import org.codehaus.jackson.xc.JaxbAnnotationIntrospector;
 
 public class Util {
 	JAXBContext jc;
@@ -52,11 +56,15 @@ public class Util {
 
 	try {
 		ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(SerializationConfig.Feature.INDENT_OUTPUT, format);
-		mapper.configure(SerializationConfig.Feature.USE_ANNOTATIONS, true);
-		mapper.setAnnotationIntrospector(new JaxbAnnotationIntrospector());
-		mapper.getSerializationConfig().setSerializationInclusion(org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion.NON_NULL);
-		mapper.getSerializationConfig().enable(SerializationConfig.Feature.WRAP_ROOT_VALUE);
+		mapper.configure(SerializationFeature.INDENT_OUTPUT, format);
+		AnnotationIntrospector aipair = new AnnotationIntrospectorPair(
+						new JaxbAnnotationIntrospector(),
+						new JacksonAnnotationIntrospector()
+		);
+
+		mapper.setAnnotationIntrospector(aipair);
+		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+		mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
 		json = mapper.writeValueAsString(o);
 	}
 	catch (JsonGenerationException e) {
